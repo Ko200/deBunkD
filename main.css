@@ -115,3 +115,87 @@ ul {list-style-type: none;}
 }
 
 /* Highlight the "current" day */
+
+
+/* attendance register */
+.red{
+  
+  border: 1px solid black;
+  border-bottom: none;
+  
+}
+.add-sub-btn
+{
+
+  height: 50px;
+  margin-top: 5px;  
+  width: 100%;
+  margin-top: 2%;
+}
+.attendancebox
+{
+  margin-top: 100px;
+}
+.attended-bunked
+{
+margin-top: 20%;
+text-align: center;
+}
+.font-style-markd{
+  font-size: 1.5rem;
+  text-align: center;
+
+
+}
+.attendance-bg
+{
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  border-radius: 120%;
+  color: white;
+  position: relative;
+  left: -40px;
+  top: 10px;
+  
+}
+.attendance-percentage
+{
+  text-align: center;
+  padding-top: 23px;
+}
+.btn-style
+{
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  font-size: 2.9rem;
+  margin: 10px auto;
+  color:white;
+  text-shadow: 2px balck'
+
+}
+.attendance-centre
+{
+  margin-top: 3%;
+}
+.btn-info1 {
+  color: #fff;
+  background-color: #022335;
+  border-color: #022335
+}
+.btn-info1:hover {
+  color: #fff;
+  background-color:#022335;
+  border-color: #022335;
+}
+
+.sub-bunk
+{
+margin-left: 10%;
+}
+.text-allign-left
+{
+  text-align: left;
+}
+
