@@ -1,8 +1,8 @@
 var cacheName = 'deBunkD';
 var filesToCache = [
-    '/main.css',
-    '/index.html',
-    '/app.js',
+    'main.css',
+    'index.html',
+    'app.js',
   ];
 
 self.addEventListener('install', function(e) {
