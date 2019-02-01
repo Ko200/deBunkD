@@ -4,7 +4,7 @@
                   <ul>
                       <li class="prev">&#10094;</li>
                       <li class="next">&#10095;</li>
-                      <li class="month-style">February<br><span style="font-size:18px">2019</span></li>
+                      <li class="month-style"><b id="month">February</b><br><span style="font-size:18px"><b id="year">2019</b></span></li>
                     </ul>
               </div>
               
@@ -20,46 +20,47 @@
                     <li>Su</li>
                   </ul>
                   
-                  <ul class="days"> 
-                    
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    
-                    
-            
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
-                    <li>10</li>
-                    <li>11</li>
-                    <li>12</li>
-                    <li>13</li>
-                    <li>14</li>
-                    <li>15</li>
-                    <li>16</li>
-                    <li>17</li>
-                    <li>18</li>
-                    <li>19</li>
-                    <li>20</li>
-                    <li>21</li>
-                    <li>22</li>
-                    <li>23</li>
-                    <li>24</li>
-                    <li>25</li>
-                    <li>26</li>
-                    <li>27</li>
-                    <li>28</li>
-                    <li>29</li>
-                    <li>30</li>
-                    <li>31</li>
+                  <ul class="days">
                   </ul>     
         
       </div>
+      <script>
+        function getMonthFromString(mon)
+        {
+        var d = Date.parse(mon + "1, 2012");
+        if(!isNaN(d))
+        {
+          return new Date(d).getMonth();
+        }
+        return -1;
+        }
+        $(".prev").click((e)=>{
+          curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())-1)
+          cal(curr.getFullYear(),curr.getMonth())
+        });
+        $(".next").click((e)=>{
+          curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())+1)
+          cal(curr.getFullYear(),curr.getMonth())
+        });
+        function cal(year,month)
+        {
+          console.log(year+" "+month)
+          monthS=new Date(year,month).toLocaleString('en-us',{'month':'long'});
+          $("#month").html(monthS);
+          $("#year").html(year);
+          start=new Date(year,month,1);
+          startday=(start.getDay()+6)%7;
+          li=document.createElement("li");
+          ul=$(".days")[0];
+          ul.innerHTML="";
+          for(i=0;i<startday;i++)
+          {
+            ul.append(li.cloneNode(deep=true));
+          }
+          for(i=1;new Date(year,month,i).getMonth()==month;i++)
+          {
+            li.innerHTML=i;
+            ul.append(li.cloneNode(deep=true));
+          }
+        }
+      </script>
