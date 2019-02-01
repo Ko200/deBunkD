@@ -130,13 +130,12 @@ ul {list-style-type: none;}
   height: 50px;
   margin-top: 5px;  
   width: 100%;
-  margin-top: 2%;
+  margin-top: 100px;
 }
 .attendancebox
 {
   margin-top: 30px;
-  box-shadow: 1px 1px 10px 2px #AEAEAE;
-  border-radius: 9px;
+  box-shadow: 1px 1px 10px 1px #AEAEAE;
 
 }
 .attended-bunked
