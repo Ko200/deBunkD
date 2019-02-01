@@ -3,6 +3,9 @@ var filesToCache = [
     'main.css',
     'index.html',
     'app.js',
+    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+    'https://code.jquery.com/jquery-3.3.1.min.js',
+    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
   ];
 
 self.addEventListener('install', function(e) {
