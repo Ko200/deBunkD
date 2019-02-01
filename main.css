@@ -1,0 +1,29 @@
+.navbar-default {
+    background-color: darkslategrey;
+    border-color: #e7e7e7;
+}
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+.navbar-toggle:hover {
+    background-color: white;
+}
+.navbar-default .navbar-brand:hover {
+    color: lightblue;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: lightblue;
+    background-color: transparent;
+}
+#top-navbr-grp
+{
+    margin-left: 130px;
+}
+.inner-gape{
+    
+    margin-right: 10px;
+}
