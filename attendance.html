@@ -4,39 +4,130 @@ border-radius: 5px;
 position: relative;
 top: 60px;
 ">
+<template id="subjectbox">
         <div class="attendancebox">
             <div class="row ">
                 <div class="col-md-3 col-xs-3 ">
                  <div class="attended-bunked">
-                   <p class="font-style-markd">Attended</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
+                   <p class="font-style-markd">Attended:<span class="attended">0</span></p>
+                   <button class="btn btn-success btn-style attendup" >+</button><br>
+                   <button class="btn btn-danger btn-style attenddown" >-</button>
                  </div>
                 </div>
                 <div class="col-md-5 col-xs-5 attendance-centre">
                   
                   <div class="sub-bunk">
-                      <h4 class="text-allign-left" >Maths</h4>
-                      <p class="text-allign-left" > Min attendance Req:75%</p>
-                      <p class="text-allign-left">Maximum lectures you can bunk : <span class="to-bunk"></span> </p>
+                      <h4 class="text-align-left subject" >Maths</h4>
+                      <p class="text-align-left" > Min attendance Req:<b class="minreq">75</b>%</p>
+                      <p class="text-align-left"><span class="bunktext">Maximum lectures you can bunk</span> : <span class="to-bunk"></span> </p>
                       <!-- <p class="text-allign-left">Maximum lectures you can attend : <span class="to-bunk"></span> </p> -->
                   </div>
                   
                  </div>
                  <div class="col-md-1 col-xs-1">
-                        <p class=" attendance-bg attendance-percentage">36%</p>
+                        <p class=" attendance-bg attendance-percentage"><b class="attendance">36</b>%</p>
                  </div>
                 <div class="col-md-3 col-xs-3 ">
                   <div class="attended-bunked">
-                   <p class="font-style-markd" >Bunked</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
+                   <p class="font-style-markd" >Bunked:<span class="bunked"></span></p>
+                   <button class="btn btn-success btn-style bunkup" >+</button><br>
+                   <button class="btn btn-danger btn-style bunkdown" >-</button>
                  </div>
                  </div>
                  
               </div>
         </div>
+</template>
 </div>
-<div class="col-md-12 col-xs-12 ">
-        <button class="btn btn-info1 add-sub-btn">Add Subject</button>
-</div>
+        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12">Add Subject</button>
+<script>
+  function createATT(obj)
+  {
+    if(!localStorage.getItem(obj.subject))
+    {
+    localStorage.setItem(obj.subject,JSON.stringify(obj));
+    list=JSON.parse(localStorage.getItem("list"));
+    list.push(obj.subject);
+    localStorage.setItem('list',JSON.stringify(list));
+    }
+    let ele=document.getElementById("subjectbox").content.cloneNode(deep=true).children[0];
+    let attendanceCount=ele.getElementsByClassName('attended')[0];
+    let bunkCount=ele.getElementsByClassName("bunked")[0];
+    let minreq=ele.getElementsByClassName("minreq")[0];
+    let attpercent=ele.getElementsByClassName("attendance")[0];
+    let subject=ele.getElementsByClassName("subject")[0];
+    let bunkText=ele.getElementsByClassName("bunktext")[0];
+    let to=ele.getElementsByClassName("to-bunk")[0];
+    document.getElementsByClassName("container")[1].appendChild(ele);
+    subject.innerHTML=obj.subject;
+    attendanceCount.innerHTML=obj.attended;
+    bunkCount.innerHTML=obj.bunked;
+    minreq.innerHTML=obj.minreq;
+    attpercent.innerHTML=obj.attpercent;
+    setText(obj,bunkText,to);
+
+    ele.getElementsByClassName("attendup")[0].addEventListener('click',(e)=>{
+      obj.attended+=1;
+      attendanceCount.innerHTML=obj.attended;
+      attendpercent(obj);
+      setText(obj,bunkText,to);
+      attpercent.innerHTML=obj.attpercent;
+    });
+    ele.getElementsByClassName("attenddown")[0].addEventListener('click',(e)=>{
+      obj.attended-=1;
+      attendanceCount.innerHTML=obj.attended;
+      attendpercent(obj);
+      setText(obj,bunkText,to);
+      attpercent.innerHTML=obj.attpercent;
+    });
+    ele.getElementsByClassName("bunkup")[0].addEventListener('click',(e)=>{
+      obj.bunked+=1;
+      bunkCount.innerHTML=obj.bunked;
+      attendpercent(obj);
+      setText(obj,bunkText,to);
+      attpercent.innerHTML=obj.attpercent;
+    });
+    ele.getElementsByClassName("bunkdown")[0].addEventListener('click',(e)=>{
+      obj.bunked-=1;
+      bunkCount.innerHTML=obj.bunked;
+      attendpercent(obj);
+      setText(obj,bunkText,to);
+      attpercent.innerHTML=obj.attpercent;
+    });
+  }
+
+  function tobunk(obj)
+  {
+    return (-19*obj.bunked/37)-(2*obj.attended+obj.bunked)/2;
+  }
+
+  function toattend(obj)
+  {
+    return 1;
+  }
+
+  function attendpercent(obj)
+  {
+    return obj.attpercent=obj.attended*100/(obj.attended+obj.bunked);
+  }
+
+  function setText(obj,bunkText,to)
+  {
+    if(obj.attpercent>obj.minreq)
+    {
+      bunkText.innerHTML="Maximum lectures you can bunk";
+      to.innerHTML=tobunk(obj);
+    }
+    else{
+      bunkText.innerHTML="Maximum lectures you must attend";
+      to.innerHTML=toattend(obj);
+    }
+  }
+  (()=>{
+    subjects=JSON.parse(localStorage.getItem("list"));
+    for(i in subjects)
+    {
+      createATT(JSON.parse(localStorage.getItem(subjects[i])));
+    }
+  })();
+</script>
