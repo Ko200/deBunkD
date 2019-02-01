@@ -1,4 +1,4 @@
-
+var cacheName = 'deBunkD';
 var filesToCache = [
     '/main.css',
     '/index.html',
