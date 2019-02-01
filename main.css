@@ -200,4 +200,72 @@ margin-left: 10%;
 {
   text-align: left;
 }
+.attandance-name{
+  margin-left:-43px;
+  position: relative;
+  top: 15px;
+  
+}
+.containerform
+{
+  width: 43%;
+}
+.form-group-two
+{
+  float: left;
+}
+.inputhing
+{
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 0px;
+  position: relative;
+  top: -15%;
+  width: 250%;
+  float: left;
+}
+.form-head
+{
+  font-size: 1.2rem;
+  position: relative;
+  top: -10%;
+}
 
+.inputhing2
+{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 0px;
+
+  
+  top: -15%;
+}
+.bnk-atnd
+{
+  float: left;
+}
+form{
+  width: 50%;
+ background: white;
+  position: absolute;
+  box-shadow: -1px 4px 12px #ddd;
+  left: 25%;
+  top: 60%;
+  color: #022335;
+}
+hr{
+  width:250%;
+}
+h5{
+  text-align: center;
+  position: relative;
+  top: 12%;
+}
+.btn-default1
+{
+  width: 260%;
+  background:  #022335;
+  color: white;
+  margin-top: 5%;
+}
