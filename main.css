@@ -1,6 +1,9 @@
 .navbar-default {
     background-color: darkslategrey;
     border-color: #e7e7e7;
+    padding: 5px 0;
+
+    
 }
 .navbar-default .navbar-brand {
     color: white;
@@ -27,3 +30,88 @@
     
     margin-right: 10px;
 }
+
+
+/* callender page styles */
+
+.calendar-container-style
+{
+  margin-top: 100px;
+}
+
+ul {list-style-type: none;}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+  height: 210px;
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+  float: left;
+  padding-top: 10px;
+  font-size: 35px;
+}
+
+/* Next button */
+.month .next {
+  float: right;
+  padding-top: 10px;
+  font-size: 35px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin:0;
+  padding: 10px 0;
+  height: 50px;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  float: left;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+  height: 280px;
+}
+
+.days li {
+  float: left;
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
