@@ -115,3 +115,45 @@ ul {list-style-type: none;}
 }
 
 /* Highlight the "current" day */
+
+
+/* attendance register */
+.red{
+  
+  border: 1px solid black;
+  border-bottom: none;
+  
+}
+.green
+{
+  background: green;
+  border: 1px solid light gray;
+  height: 50px;
+  margin-top: 5px;  
+}
+.attendancebox
+{
+  margin-top: 100px;
+}
+.attended-bunked
+{
+margin-top: 20%;
+}
+.font-style-markd{
+  font-size: 1.5rem;
+  text-align: center;
+
+
+}
+.attendance-bg
+{
+  height: 55px;
+  width: 55px;
+  background-color: red;
+  border-radius: 50px;
+}
+.attendance-perxentage
+{
+  text-align: center;
+  padding-top: 18px;
+}
