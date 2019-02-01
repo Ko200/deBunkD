@@ -7,6 +7,7 @@
 $("a").click((e)=>{
   e.preventDefault();
   console.log(e.target.href);
+  $("#ham").click();
   m=$("#content").load(e.target.href,()=>{
   if('cal' in window)
   {
