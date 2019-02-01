@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>deBunkD</title>
+    <link rel="manfest" href="manifest.json"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav" id="top-navbr-grp">
               <li class="inner-gape"><a href="#">Attendance <span class="sr-only">(current)</span></a></li>
-              <li class="inner-gape"><a href="calendar.html">Calendar</a></li>
+              <li class="inner-gape"><a id="tocal" href="calendar.html">Calendar</a></li>
               <li class="inner-gape"><a href="#">Dash board</a></li>
              
             </ul>
@@ -35,47 +35,14 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-      <div class="container ">
-        <div class="attendancebox">
-            <div class="row ">
-                <div class="col-md-3 col-xs-3 ">
-                 <div class="attended-bunked">
-                   <p class="font-style-markd">Attended</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
-                 </div>
-                </div>
-                <div class="col-md-5 col-xs-5 attendance-centre">
-                  
-                  <div class="sub-bunk">
-                      <h4 class="text-allign-left" >Maths</h4>
-                      <p class="text-allign-left" > Min attendance Req:75%</p>
-                      <p class="text-allign-left">Maximum lectures you can bunk : <span class="to-bunk"></span> </p>
-                      <!-- <p class="text-allign-left">Maximum lectures you can attend : <span class="to-bunk"></span> </p> -->
-                  </div>
-                  
-                 </div>
-                 <div class="col-md-1 col-xs-1">
-                        <p class=" attendance-bg attendance-percentage">36%</p>
-                 </div>
-                <div class="col-md-3 col-xs-3 ">
-                  <div class="attended-bunked">
-                   <p class="font-style-markd" >Bunked</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
-                 </div>
-                 </div>
-                 <div class="col-md-12 col-xs-12">
-                   <button class="btn btn-info1 add-sub-btn">Add Subject</button>
-                 </div>
-              </div>
-        </div>
-          
+      <div id="content">
+
       </div>
       <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>   
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>          
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+          <script src="app.js" async></script>        
 </body>
 </html>
