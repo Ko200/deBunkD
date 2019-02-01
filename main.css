@@ -124,12 +124,13 @@ ul {list-style-type: none;}
   border-bottom: none;
   
 }
-.green
+.add-sub-btn
 {
-  background: green;
-  border: 1px solid light gray;
+
   height: 50px;
   margin-top: 5px;  
+  width: 100%;
+  margin-top: 2%;
 }
 .attendancebox
 {
@@ -138,6 +139,7 @@ ul {list-style-type: none;}
 .attended-bunked
 {
 margin-top: 20%;
+text-align: center;
 }
 .font-style-markd{
   font-size: 1.5rem;
@@ -147,13 +149,53 @@ margin-top: 20%;
 }
 .attendance-bg
 {
-  height: 55px;
-  width: 55px;
+  height: 60px;
+  width: 60px;
   background-color: red;
-  border-radius: 50px;
+  border-radius: 120%;
+  color: white;
+  position: relative;
+  left: -40px;
+  top: 10px;
+  
 }
-.attendance-perxentage
+.attendance-percentage
 {
   text-align: center;
-  padding-top: 18px;
+  padding-top: 23px;
 }
+.btn-style
+{
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  font-size: 2.9rem;
+  margin: 10px auto;
+  color:white;
+  text-shadow: 2px balck'
+
+}
+.attendance-centre
+{
+  margin-top: 3%;
+}
+.btn-info1 {
+  color: #fff;
+  background-color: #022335;
+  border-color: #022335
+}
+.btn-info1:hover {
+  color: #fff;
+  background-color:#022335;
+  border-color: #022335;
+}
+
+.sub-bunk
+{
+margin-left: 10%;
+}
+.text-allign-left
+{
+  text-align: left;
+}
+
