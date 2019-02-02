@@ -183,13 +183,13 @@ text-align: center;
 }
 .btn-info1 {
   color: #fff;
-  background-color: #022335;
-  border-color: #022335
+  background-color: darkslategrey;
+  border-color: darkslategrey;
 }
 .btn-info1:hover {
   color: #fff;
-  background-color:#022335;
-  border-color: #022335;
+  background-color:darkslategrey;
+  border-color: darkslategrey;
 }
 
 .sub-bunk
@@ -228,7 +228,7 @@ margin-left: 10%;
 {
   font-size: 1.2rem;
   position: relative;
-  top: 18%;
+  top: -18%;
   width: 250%;
 }
 
@@ -262,8 +262,11 @@ h5{
   margin-top: 5%;
 }
 
-.fa-calendar-check
-{
-  height: 40px;
-  width: 40px;
+.btn-form{
+  background:  darkslategray;
+  border: darkslategray;
+}
+.btn-form:hover{
+  background:  darkslategray;
+  border: darkslategray;
 }

@@ -25,6 +25,7 @@ $("a").click((e)=>{
               if(!localStorage.getItem("timetable"))
               {
                 //pop up time table
+                $("#timetable").modal();
               }
               else
               {
