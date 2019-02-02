@@ -222,18 +222,19 @@ margin-left: 10%;
   position: relative;
   top: -15%;
   width: 250%;
-  float: left;
+  
 }
 .form-head
 {
   font-size: 1.2rem;
   position: relative;
-  top: -10%;
+  top: 18%;
+  width: 250%;
 }
 
 .inputhing2
 {
-  width: 100%;
+  width: 125%;
   border: none;
   border-bottom: 1px solid grey;
   padding: 0px;
@@ -259,7 +260,7 @@ hr{
 }
 h5{
   text-align: center;
-  position: relative;
+  
   top: 12%;
 }
 .btn-default1
@@ -268,4 +269,10 @@ h5{
   background:  #022335;
   color: white;
   margin-top: 5%;
+}
+
+.fa-calendar-check
+{
+  height: 40px;
+  width: 40px;
 }
