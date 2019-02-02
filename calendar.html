@@ -92,27 +92,31 @@
                 o.absent=$(a.children[i]).hasClass('absent');
                 o.cancel=$(a.children[i]).hasClass('cancel');
                 obj.push(o);
+                 q=JSON.parse(localStorage.getItem(a.children[i].innerHTML))||{'subject':a.children[i].innerHTML,'attended':0,'bunked':0}
+                if(o.present^tmps.dayentry[i].present)
+                {
+                  if(o.present)
+                  {
+                    q.attended+=1;
+                  }
+                  else
+                  {
+                    q.attended-=1;
+                  }
+                }
+                if(o.absent^tmps.dayentry[i].absent)
+                {
+                  if(o.absent)
+                    q.bunked+=1;
+                  else 
+                    q.bunked-=1;
+                }
+                q.attpercent=attendpercent(q);
+                localStorage.setItem(a.children[i].innerHTML,JSON.stringify(q));
               }
               localStorage.setItem(new Date(tmps.year,tmps.month,tmps.day),JSON.stringify(obj));
             });
-              tmps={};
-              if(!localStorage.getItem("timetable"))
-              {
-                //pop up time table
-              }
-              else
-              {
-                tmps.timetable=localStorage.getItem('timetable');
-              }
-              function getMonthFromString(mon)
-              {
-              var d = Date.parse(mon + "1, 2012");
-              if(!isNaN(d))
-              {
-                return new Date(d).getMonth();
-              }
-              return -1;
-              }
+              
               $(".prev").click((e)=>{
                 curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())-1)
                 cal(curr.getFullYear(),curr.getMonth())
@@ -121,50 +125,7 @@
                 curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())+1)
                 cal(curr.getFullYear(),curr.getMonth())
               });
-              function cal(year,month)
-              {
-                tmps.year=year;
-                tmps.month=month;
-                console.log(year+" "+month)
-                monthS=new Date(year,month).toLocaleString('en-us',{'month':'long'});
-                $("#month").html(monthS);
-                $("#year").html(year);
-                start=new Date(year,month,1);
-                startday=(start.getDay()+6)%7;
-                li=document.createElement("li");
-                li.setAttribute('data-toggle','modal');
-                li.setAttribute('data-target','daysclass');
-                ul=$(".days")[0];
-                ul.innerHTML="";
-                for(i=0;i<startday;i++)
-                {
-                  ul.append(li.cloneNode(deep=true));
-                }
-                for(i=1;new Date(year,month,i).getMonth()==month;i++)
-                {
-                  l=li.cloneNode(deep=true);
-                  l.addEventListener("click",(e)=>{
-                  tmps.day=e.target.innerHTML;
-                  });
-                  $(l).click((e)=>{
-                    $("#daysclass").modal();
-                  })
-                  if(passall(year,month,i))
-                  {
-                    $(l).addClass('pass');
-                  }
-                  if(fail(year,month,i))
-                  {
-                    $(l).addClass("fail");
-                  }
-                  if(holiday(year,month,i))
-                  {
-                    $(l).addClass("holi");
-                  }
-                  l.innerHTML=i;
-                  ul.append(l);
-                }
-              }
+              
               $("#daysclass").on("show.bs.modal",(e)=>{
                 d=new Date(tmps.year,tmps.month,tmps.day); //0 sunday 6 saturday
                 day=d.getDay();
@@ -211,47 +172,4 @@
                   listtdy.append(b);
                 }
               });
-
-              function passall(y,m,d)
-              {
-                return 1;
-              }
-              function fail(y,m,d)
-              {
-                return 1;
-              }
-              function holiday(y,m,d)
-              {
-                if(new Date(y,m,d).getDay()==0)
-                {
-                  return 1;
-                }
-                return 0;
-              }
-              function present(i)
-              {
-                try
-                {if(tmps.dayentry[i].present==null||tmps.dayentry[i].present)
-                  return true;
-                else
-                  return false;
-                }
-                catch(e){
-                  return true;
-                }
-              }
-
-              function absent(i)
-              {
-                try {
-                return tmps.dayentry[i].absent;
-                }catch(e){return false};
-              }
-
-              function cancel(i)
-              {
-                try {
-                return tmps.dayentry[i].cancel;
-                }catch(e){return false};
-              }
             </script>
