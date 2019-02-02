@@ -262,11 +262,10 @@ h5{
   margin-top: 5%;
 }
 
-<<<<<<< HEAD
 .greeny
 {
   background: green;
-=======
+}
 .btn-form{
   background:  darkslategray;
   border: darkslategray;
@@ -274,5 +273,17 @@ h5{
 .btn-form:hover{
   background:  darkslategray;
   border: darkslategray;
->>>>>>> fada4f889d67708739ece6b0c4d23f642da782c1
+
+}
+table
+{
+  border: 1px solid #666;
+}
+.btn-danger
+{
+  width:40%;
+}
+.ipp
+{
+  width: 100%;
 }
