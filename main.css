@@ -273,4 +273,17 @@ h5{
 .btn-form:hover{
   background:  darkslategray;
   border: darkslategray;
+
+}
+table
+{
+  border: 1px solid #666;
+}
+.btn-danger
+{
+  width:40%;
+}
+.ipp
+{
+  width: 100%;
 }

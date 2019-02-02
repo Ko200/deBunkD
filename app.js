@@ -1,8 +1,8 @@
-/* if ('serviceWorker' in navigator) {
+ if ('serviceWorker' in navigator) {
     navigator.serviceWorker
              .register('./sw.js')
              .then(function() { console.log('Service Worker Registered'); });
-} */
+}
 
 $("a").click((e)=>{
   e.preventDefault();
@@ -126,6 +126,7 @@ function createATT(obj)
     list.push(obj.subject);
     localStorage.setItem('list',JSON.stringify(list));
     }
+    if(!obj.f){
     let ele=document.getElementById("subjectbox").content.cloneNode(deep=true).children[0];
     let attendanceCount=ele.getElementsByClassName('attended')[0];
     let bunkCount=ele.getElementsByClassName("bunked")[0];
@@ -174,6 +175,7 @@ function createATT(obj)
       attpercent.innerHTML=obj.attpercent;
       localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
+    }
   }
 
   function toattend(obj)
