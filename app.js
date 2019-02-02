@@ -1,8 +1,8 @@
-/* if ('serviceWorker' in navigator) {
+ if ('serviceWorker' in navigator) {
     navigator.serviceWorker
              .register('./sw.js')
              .then(function() { console.log('Service Worker Registered'); });
-} */
+}
 
 $("a").click((e)=>{
   e.preventDefault();
@@ -126,6 +126,7 @@ function createATT(obj)
     list.push(obj.subject);
     localStorage.setItem('list',JSON.stringify(list));
     }
+    if(!obj.f){
     let ele=document.getElementById("subjectbox").content.cloneNode(deep=true).children[0];
     let attendanceCount=ele.getElementsByClassName('attended')[0];
     let bunkCount=ele.getElementsByClassName("bunked")[0];
@@ -139,7 +140,7 @@ function createATT(obj)
     attendanceCount.innerHTML=obj.attended;
     bunkCount.innerHTML=obj.bunked;
     minreq.innerHTML=obj.minreq;
-    attpercent.innerHTML=obj.attpercent;
+    attpercent.innerHTML=attendpercent(obj);
     setText(obj,bunkText,to);
 
     ele.getElementsByClassName("attendup")[0].addEventListener('click',(e)=>{
@@ -148,7 +149,7 @@ function createATT(obj)
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
-      //localStorage.setItem(obj.subject,JSON.stringify(obj));
+      localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("attenddown")[0].addEventListener('click',(e)=>{
       obj.attended-=1;
@@ -156,7 +157,7 @@ function createATT(obj)
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
-      //localStorage.setItem(obj.subject,JSON.stringify(obj));
+      localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("bunkup")[0].addEventListener('click',(e)=>{
       obj.bunked+=1;
@@ -164,7 +165,7 @@ function createATT(obj)
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
-      //localStorage.setItem(obj.subject,JSON.stringify(obj));
+      localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("bunkdown")[0].addEventListener('click',(e)=>{
       obj.bunked-=1;
@@ -172,8 +173,9 @@ function createATT(obj)
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
-      //localStorage.setItem(obj.subject,JSON.stringify(obj));
+      localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
+    }
   }
 
   function toattend(obj)
@@ -204,4 +206,14 @@ function createATT(obj)
       to.innerHTML=toattend(obj);
       $(".attender").removeClass("greeny");
     }
+  }
+
+  function extractweekcount(arr,subs)
+  {
+      q=arr.join();
+      count={};
+      for(i in subs)
+      {
+          count[subs[i]]=q.count(subs[i]);
+      }
   }
