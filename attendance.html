@@ -39,13 +39,13 @@ top: 60px;
         </div>
 </template>
 </div>
-        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12">Add Subject</button>
+        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12" data-toggle="modal" data-target="#pop">Add Subject</button>
 <script>
   function createATT(obj)
   {
     if(!localStorage.getItem(obj.subject))
     {
-    localStorage.setItem(obj.subject,JSON.stringify(obj));
+    //localStorage.setItem(obj.subject,JSON.stringify(obj));
     list=JSON.parse(localStorage.getItem("list"));
     list.push(obj.subject);
     localStorage.setItem('list',JSON.stringify(list));
@@ -72,6 +72,7 @@ top: 60px;
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
+      //localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("attenddown")[0].addEventListener('click',(e)=>{
       obj.attended-=1;
@@ -79,6 +80,7 @@ top: 60px;
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
+      //localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("bunkup")[0].addEventListener('click',(e)=>{
       obj.bunked+=1;
@@ -86,6 +88,7 @@ top: 60px;
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
+      //localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
     ele.getElementsByClassName("bunkdown")[0].addEventListener('click',(e)=>{
       obj.bunked-=1;
@@ -93,17 +96,18 @@ top: 60px;
       attendpercent(obj);
       setText(obj,bunkText,to);
       attpercent.innerHTML=obj.attpercent;
+      //localStorage.setItem(obj.subject,JSON.stringify(obj));
     });
-  }
-
-  function tobunk(obj)
-  {
-    return (-19*obj.bunked/37)-(2*obj.attended+obj.bunked)/2;
   }
 
   function toattend(obj)
   {
-    return 1;
+    return 3*obj.bunked-obj.attended;
+  }
+
+  function tobunk(obj)
+  {
+    return Math.floor(obj.attended/3)-obj.bunked;
   }
 
   function attendpercent(obj)
@@ -131,38 +135,37 @@ top: 60px;
     }
   })();
 </script>
-<div class="col-md-12 col-xs-12 ">
-        <button class="btn btn-info1 add-sub-btn">ADD SUBJECT</button>
-</div>
-<!-- <div  style="z-index: inherit 100000000;background:#00000066;height:100%;width:100%;position:fixed;top:50%;left:50;"> -->
-<form>
-    <div class="row containerform">
-        <div class="col-md-12 col-xs-12"
-                
-                    <h5>Add Subject</h5>
-                    <hr>
-                        <p class="form-head">subject Name</p>
-                        <input  class="inputhing" type="text">
-            
-                        <p class="form-head" >Attendance % Required</p>
-                        <input type="number" class="inputhing">
-                        
-                            <div class="bnk-atnd">
-                                <div>
-                                    <p class="form-head">Attended</p>
-                                <input  class="inputhing2" type="number" >
-                                </div>
-                                <div>
-                                <p class="form-head">Bunked</p>
-                            
-                                <input class="inputhing2" type="number">
-                                </div>
-                            </div>
-                      
-                      <button type="submit" class="btn btn-default1">Submit</button>
-        
+<div class="modal fade" id="pop" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
-   </div> 
-        
-</form>
-<!-- </div> -->
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 

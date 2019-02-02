@@ -24,43 +24,234 @@
                   </ul>     
         
       </div>
-      <script>
-        function getMonthFromString(mon)
-        {
-        var d = Date.parse(mon + "1, 2012");
-        if(!isNaN(d))
-        {
-          return new Date(d).getMonth();
-        }
-        return -1;
-        }
-        $(".prev").click((e)=>{
-          curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())-1)
-          cal(curr.getFullYear(),curr.getMonth())
-        });
-        $(".next").click((e)=>{
-          curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())+1)
-          cal(curr.getFullYear(),curr.getMonth())
-        });
-        function cal(year,month)
-        {
-          console.log(year+" "+month)
-          monthS=new Date(year,month).toLocaleString('en-us',{'month':'long'});
-          $("#month").html(monthS);
-          $("#year").html(year);
-          start=new Date(year,month,1);
-          startday=(start.getDay()+6)%7;
-          li=document.createElement("li");
-          ul=$(".days")[0];
-          ul.innerHTML="";
-          for(i=0;i<startday;i++)
-          {
-            ul.append(li.cloneNode(deep=true));
-          }
-          for(i=1;new Date(year,month,i).getMonth()==month;i++)
-          {
-            li.innerHTML=i;
-            ul.append(li.cloneNode(deep=true));
-          }
-        }
-      </script>
+      <div class="modal fade" id="daysclass" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+              </div>
+              <div class="modal-body" style="padding:40px 50px;">
+                <div role="form" id="classlistday">
+                
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger btn-default pull-left finish" data-dismiss="modal">Apply!</button>
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              </div>
+            </div>
+            
+          </div>
+        </div> 
+
+        <div class="modal fade" id="timetable" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                  <div role="form">
+                    <div class="form-group">
+                      <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                      <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                      <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                    </div>
+                    <div class="checkbox">
+                      <label><input type="checkbox" value="" checked>Remember me</label>
+                    </div>
+                      <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                  <p>Not a member? <a href="#">Sign Up</a></p>
+                  <p>Forgot <a href="#">Password?</a></p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <script>
+            $(".finish").click((e)=>{
+              a=document.getElementById("classlistday");
+              obj=[]
+              for(i=0;i<a.children.length;i++)
+              {
+                o={};
+                o.present=$(a.children[i]).hasClass('present');
+                o.absent=$(a.children[i]).hasClass('absent');
+                o.cancel=$(a.children[i]).hasClass('cancel');
+                obj.push(o);
+              }
+              localStorage.setItem(new Date(tmps.year,tmps.month,tmps.day),JSON.stringify(obj));
+            });
+              tmps={};
+              if(!localStorage.getItem("timetable"))
+              {
+                //pop up time table
+              }
+              else
+              {
+                tmps.timetable=localStorage.getItem('timetable');
+              }
+              function getMonthFromString(mon)
+              {
+              var d = Date.parse(mon + "1, 2012");
+              if(!isNaN(d))
+              {
+                return new Date(d).getMonth();
+              }
+              return -1;
+              }
+              $(".prev").click((e)=>{
+                curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())-1)
+                cal(curr.getFullYear(),curr.getMonth())
+              });
+              $(".next").click((e)=>{
+                curr=new Date(Number($("#year").html()),getMonthFromString($("#month").html())+1)
+                cal(curr.getFullYear(),curr.getMonth())
+              });
+              function cal(year,month)
+              {
+                tmps.year=year;
+                tmps.month=month;
+                console.log(year+" "+month)
+                monthS=new Date(year,month).toLocaleString('en-us',{'month':'long'});
+                $("#month").html(monthS);
+                $("#year").html(year);
+                start=new Date(year,month,1);
+                startday=(start.getDay()+6)%7;
+                li=document.createElement("li");
+                li.setAttribute('data-toggle','modal');
+                li.setAttribute('data-target','daysclass');
+                ul=$(".days")[0];
+                ul.innerHTML="";
+                for(i=0;i<startday;i++)
+                {
+                  ul.append(li.cloneNode(deep=true));
+                }
+                for(i=1;new Date(year,month,i).getMonth()==month;i++)
+                {
+                  l=li.cloneNode(deep=true);
+                  l.addEventListener("click",(e)=>{
+                  tmps.day=e.target.innerHTML;
+                  });
+                  $(l).click((e)=>{
+                    $("#daysclass").modal();
+                  })
+                  if(passall(year,month,i))
+                  {
+                    $(l).addClass('pass');
+                  }
+                  if(fail(year,month,i))
+                  {
+                    $(l).addClass("fail");
+                  }
+                  if(holiday(year,month,i))
+                  {
+                    $(l).addClass("holi");
+                  }
+                  l.innerHTML=i;
+                  ul.append(l);
+                }
+              }
+              $("#daysclass").on("show.bs.modal",(e)=>{
+                d=new Date(tmps.year,tmps.month,tmps.day); //0 sunday 6 saturday
+                day=d.getDay();
+                if(localStorage.getItem(d))
+                {
+                  tmps.dayentry=JSON.parse(localStorage.getItem(d));
+                }
+                btn=document.createElement('button');
+                listtdy=$("#classlistday");
+                listtdy.html("");
+                for(i in tmps.timetable[day])
+                {
+                  b=btn.cloneNode(deep=true);
+                  b.innerHTML=tmps.timetable[day][i];
+                  b.addEventListener("click",(e)=>{
+                    console.log(e.target.innerHTML);
+                    if($(e.target).hasClass("cancel"))
+                    {
+                      $(e.target).removeClass("cancel");
+                      $(e.target).addClass("present");
+                      return;
+                    }
+                    $(e.target).toggleClass('present');
+                    $(e.target).toggleClass('absent');
+                  });
+                  b.addEventListener("dblclick",(e)=>{
+                    console.log(e.target.innerHTML+" db");
+                    $(e.target).removeClass('present');
+                    $(e.target).removeClass('absent');
+                    $(e.target).addClass("cancel");
+                  });
+                  if(present(i))
+                  {
+                    $(b).addClass('present');
+                  }
+                  if(absent(i))
+                  {
+                    $(b).addClass('absent');
+                  }
+                  if(cancel(i))
+                  {
+                    $(b).addClass("cancel");
+                  }
+                  listtdy.append(b);
+                }
+              });
+
+              function passall(y,m,d)
+              {
+                return 1;
+              }
+              function fail(y,m,d)
+              {
+                return 1;
+              }
+              function holiday(y,m,d)
+              {
+                if(new Date(y,m,d).getDay()==0)
+                {
+                  return 1;
+                }
+                return 0;
+              }
+              function present(i)
+              {
+                try
+                {if(tmps.dayentry[i].present==null||tmps.dayentry[i].present)
+                  return true;
+                else
+                  return false;
+                }
+                catch(e){
+                  return true;
+                }
+              }
+
+              function absent(i)
+              {
+                try {
+                return tmps.dayentry[i].absent;
+                }catch(e){return false};
+              }
+
+              function cancel(i)
+              {
+                try {
+                return tmps.dayentry[i].cancel;
+                }catch(e){return false};
+              }
+            </script>
