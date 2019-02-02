@@ -76,7 +76,7 @@ top: 60px;
                     <label for="bnkd"><span class="glyphicon glyphicon-remove"></span> Bunked</label>
                     <input type="number" class="form-control" id="bnkd" placeholder="">
                   </div>    
-              <button type="submit" class="btn btn-success btn-block btn-form"><span class="glyphicon glyphicon-"></span> DONE</button>
+              <button type="button" id="done" data-dismiss="modal" class="btn btn-success btn-block btn-form"><span class="glyphicon glyphicon-"></span> DONE</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -87,3 +87,13 @@ top: 60px;
       
     </div>
   </div> 
+  <script>
+    $("#done").click((e)=>{
+      o={};
+      o.subject=$("#subjectname").val();
+      o.minreq=Number($('#attendanceRwrd').val());
+      o.attended=Number($("#attnd").val());
+      o.bunked=Number($("#bnkd").val());
+      createATT(o);
+    });
+  </script>
