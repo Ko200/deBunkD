@@ -82,6 +82,15 @@
             </div>
           </div>
           <script>
+              if(!localStorage.getItem("timetable"))
+              {
+                //pop up time table
+                $("#timetable").modal();
+              }
+              else
+              {
+                tmps.timetable=localStorage.getItem('timetable');
+              }
             $(".finish").click((e)=>{
               a=document.getElementById("classlistday");
               obj=[]

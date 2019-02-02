@@ -22,14 +22,6 @@ $("a").click((e)=>{
 
               tmps={};
               tmps.dayentry=[{},{},{},{},{},{},{}]
-              if(!localStorage.getItem("timetable"))
-              {
-                //pop up time table
-              }
-              else
-              {
-                tmps.timetable=localStorage.getItem('timetable');
-              }
               function getMonthFromString(mon)
               {
               var d = Date.parse(mon + "1, 2012");
@@ -205,9 +197,11 @@ function createATT(obj)
     {
       bunkText.innerHTML="Maximum lectures you can bunk";
       to.innerHTML=tobunk(obj);
+      $(".attender").addClass("greeny");
     }
     else{
       bunkText.innerHTML="Maximum lectures you must attend";
       to.innerHTML=toattend(obj);
+      $(".attender").removeClass("greeny");
     }
   }
