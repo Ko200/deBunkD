@@ -44,6 +44,10 @@
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
           <script src="app.js" async></script>
           <script>
+            if(!localStorage.getItem("list"))
+            {
+              localStorage.setItem("list",JSON.stringify([]));
+            }
             $(window).ready((e)=>{
               $("#content").load("attendance.html");
             })
