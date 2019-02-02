@@ -183,13 +183,13 @@ text-align: center;
 }
 .btn-info1 {
   color: #fff;
-  background-color: #022335;
-  border-color: #022335
+  background-color: darkslategrey;
+  border-color: darkslategrey;
 }
 .btn-info1:hover {
   color: #fff;
-  background-color:#022335;
-  border-color: #022335;
+  background-color:darkslategrey;
+  border-color: darkslategrey;
 }
 
 .sub-bunk
@@ -222,18 +222,19 @@ margin-left: 10%;
   position: relative;
   top: -15%;
   width: 250%;
-  float: left;
+  
 }
 .form-head
 {
   font-size: 1.2rem;
   position: relative;
-  top: -10%;
+  top: -18%;
+  width: 250%;
 }
 
 .inputhing2
 {
-  width: 100%;
+  width: 125%;
   border: none;
   border-bottom: 1px solid grey;
   padding: 0px;
@@ -250,7 +251,7 @@ hr{
 }
 h5{
   text-align: center;
-  position: relative;
+  
   top: 12%;
 }
 .btn-default1
@@ -261,7 +262,17 @@ h5{
   margin-top: 5%;
 }
 
+<<<<<<< HEAD
 .greeny
 {
   background: green;
+=======
+.btn-form{
+  background:  darkslategray;
+  border: darkslategray;
+}
+.btn-form:hover{
+  background:  darkslategray;
+  border: darkslategray;
+>>>>>>> fada4f889d67708739ece6b0c4d23f642da782c1
 }

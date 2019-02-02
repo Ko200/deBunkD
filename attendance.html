@@ -39,7 +39,7 @@ top: 60px;
         </div>
 </template>
 </div>
-        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12" data-toggle="modal" data-target="#pop">Add Subject</button>
+        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12" data-toggle="modal" data-target="#pop">ADD SUBJECT</button>
 <script>
   (()=>{
     subjects=JSON.parse(localStorage.getItem("list"));
@@ -54,30 +54,34 @@ top: 60px;
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
+        <div class="modal-header" style="padding:15px 20px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+          <h4><span class="glyphicon glyphicon-book"></span> Add Subject</h4>
         </div>
-        <div class="modal-body" style="padding:40px 50px;">
+        <div class="modal-body" style="padding:20px 30px;">
           <form role="form">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+              <label for="subjectname"><span class="glyphicon glyphicon-book"></span> Subject Name</label>
+              <input type="text" class="form-control" id="subjectname" placeholder="Subject Name">
             </div>
             <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                    <label for="attendanceRwrd"></span>Attendance Required</label>
+                    <input type="number" class="form-control" id="attendanceRwrd">
+                  </div>  
+            <div class="form-group">
+              <label for="attnd"><span class="glyphicon glyphicon-ok"></span> Attended</label>
+              <input type="number" class="form-control" id="attnd" placeholder="">
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+            <div class="form-group">
+                    <label for="bnkd"><span class="glyphicon glyphicon-remove"></span> Bunked</label>
+                    <input type="number" class="form-control" id="bnkd" placeholder="">
+                  </div>    
+              <button type="submit" class="btn btn-success btn-block btn-form"><span class="glyphicon glyphicon-"></span> DONE</button>
           </form>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+          
         </div>
       </div>
       
