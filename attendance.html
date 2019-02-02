@@ -4,71 +4,82 @@ border-radius: 5px;
 position: relative;
 top: 60px;
 ">
+<template id="subjectbox">
         <div class="attendancebox">
             <div class="row ">
                 <div class="col-md-3 col-xs-3 ">
                  <div class="attended-bunked">
-                   <p class="font-style-markd">Attended</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
+                   <p class="font-style-markd">Attended:<span class="attended">0</span></p>
+                   <button class="btn btn-success btn-style attendup" >+</button><br>
+                   <button class="btn btn-danger btn-style attenddown" >-</button>
                  </div>
                 </div>
                 <div class="col-md-5 col-xs-5 attendance-centre">
                   
                   <div class="sub-bunk">
-                      <h4 class="text-allign-left" >Maths</h4>
-                      <p class="text-allign-left" > Min attendance Req:75%</p>
-                      <p class="text-allign-left">Maximum lectures you can bunk : <span class="to-bunk"></span> </p>
+                      <h4 class="text-align-left subject" >Maths</h4>
+                      <p class="text-align-left" > Min attendance Req:<b class="minreq">75</b>%</p>
+                      <p class="text-align-left"><span class="bunktext">Maximum lectures you can bunk</span> : <span class="to-bunk"></span> </p>
                       <!-- <p class="text-allign-left">Maximum lectures you can attend : <span class="to-bunk"></span> </p> -->
                   </div>
                   
                  </div>
                  <div class="col-md-1 col-xs-1">
-                        <P class="attandance-name">Attendance</P>
-                        <p class=" attendance-bg attendance-percentage">36%</p>
+                        <p class=" attendance-bg attendance-percentage"><b class="attendance">36</b>%</p>
                  </div>
                 <div class="col-md-3 col-xs-3 ">
                   <div class="attended-bunked">
-                   <p class="font-style-markd" >Bunked</p>
-                   <button class="btn btn-success btn-style" >+</button><br>
-                   <button class="btn btn-danger btn-style" >-</button>
+                   <p class="font-style-markd" >Bunked:<span class="bunked"></span></p>
+                   <button class="btn btn-success btn-style bunkup" >+</button><br>
+                   <button class="btn btn-danger btn-style bunkdown" >-</button>
                  </div>
                  </div>
                  
               </div>
         </div>
+</template>
 </div>
-<div class="col-md-12 col-xs-12 ">
-        <button class="btn btn-info1 add-sub-btn">ADD SUBJECT</button>
-</div>
-<!-- <div  style="z-index: inherit 100000000;background:#00000066;height:100%;width:100%;position:fixed;top:50%;left:50;"> -->
-<form>
-    <div class="row containerform">
-        <div class="col-md-12 col-xs-12">
-                
-                    <h5>Add Subject</h5>
-                    <hr>
-                        <p class="form-head">Subject Name</p>
-                        <input  class="inputhing" type="text">
-            
-                        <p class="form-head" >Attendance % Required</p>
-                        <input type="number" class="inputhing">
-                        
-                            <div class="bnk-atnd">
-                                <div class="one">
-                                    <p class="form-head">Attended</p>
-                                <input  class="inputhing2" type="number" >
-                                </div>
-                                <div>
-                                <p class="form-head">Bunked</p>
-                            
-                                <input class="inputhing2" type="number">
-                                </div>
-                            </div>
-                      
-                      <button type="submit" class="btn btn-default1">Done</button>
-        
+        <button class="btn btn-info1 add-sub-btn col-md-12 col-xs-12" data-toggle="modal" data-target="#pop">Add Subject</button>
+<script>
+  (()=>{
+    subjects=JSON.parse(localStorage.getItem("list"));
+    for(i in subjects)
+    {
+      createATT(JSON.parse(localStorage.getItem(subjects[i])));
+    }
+  })();
+</script>
+<div class="modal fade" id="pop" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
-   </div> 
-        
-</form>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 

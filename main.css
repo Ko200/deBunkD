@@ -246,15 +246,6 @@ margin-left: 10%;
 {
   float: left;
 }
-form{
-  width: 50%;
- background: white;
-  position: absolute;
-  box-shadow: -1px 4px 12px #ddd;
-  left: 25%;
-  top: 60%;
-  color: #022335;
-}
 hr{
   width:250%;
 }
